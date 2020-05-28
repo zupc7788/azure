@@ -1,0 +1,184 @@
+									
+	년말까지는 자격증 시험을 보아야 함'								
+	강사 : 김세준 Azure MVP								
+									
+	1) AAD(Azure Active Directory)								
+	   - 계정관리 솔루션 : 셀프 서비스 제공, 모든 플랫폼에 적용 가능								
+	   - 멀티 테넌트 클라우드 기반 디렉토리 및 ID 관리 : MS ,Google, 카카오, Facebook(Business Plan)								
+	       : 멀티 테넌트 : 테넌트별로 각각의 서비스 분리 가능								
+	       : 사용자 식별 --> 권한 범위 내 접근 가능								
+	   - 단일 로그인 엑세스 제공								
+	   - 모든 ID 관리 기능을 제공								
+	   - MS의 모든 제품을 통합 관리 : M365 등 								
+									
+	2) AD DS(Active Directory Domain Service)								
+	   - Windows Server 기반 ID 관리 및 디렉토리 서비스								
+	       : 기존의 사내 구축 형 배포								
+	       : Azure AD를 직접 지원하지 않는 iaaS 워크로드의 클라우드 배포								
+	   - On-Premises AD --> AAD 단방향 : 								
+	   - AAD 계정을 Emulation 해주는 서비스								
+	   - AAD와 AADS는 다르다								
+	      : 관리 서비스								
+	      : OAuth 인증								
+	      : Directory Lookup								
+	      : Federation : 인증을 위한 다른 곳으로의 연결								
+	         * Claim : 필요한 정보(e-mail주소)  -> Attribute를 가져오는 행위								
+	         * Role 권한 부여 : 모든 권한, 특정 권한 부여								
+	         * url 주소, Claim, 인증서 교환 								
+	   - Soft Sync : On-Premise와 AAD 연결								
+	   - LDAP Query 가능 (사내 기기 및 장비에서 많이 사용)								148소 9045
+	   - 그룹 정책 : 암호 변경 등								
+	   - 도메인 강비								
+	   - kerberos 및 NTLM								
+									
+	3) Role-Based Access Control								
+	    - Governance 수립이 중요								
+	    - Scope : 무한함								
+	    - built-in Roles 사용								
+	      : Control pannel, Management Pannel 구분								
+	      : Management Pannel 까지만 제어 가능								
+	    - Role Definition								
+	    - Azure PowerShell and CLI								
+	    - Configuration Self-Service Password reset								
+	      : Azure 포탈에서 직접 다운로드 가능								
+	      : 범위에서 사용자를 지정 : 암호 변경 권한 Role 적용								
+	      : Authentication methods								
+									
+	4) Azure AD Connect								
+	   - AD DS와 Azure AD를 통합								
+	   - AD DS의 사용자 암호를 Azure AD에 동기화 : Password Synchronization								
+	   - Sing-On Methods								
+	      : Password Synchronization								
+	      : Federation with AD FS								
+	      : Pass-through authentication : 인증 시스템을 통한 인증								
+	     첫번째 옵션 : 계정 + 암호(해시) 동기화   --> Seamless SSO 제공								
+	     두번째 옵션 : ID동기화 + ADFS -> 계정은 동기화								
+	     새로운 옵션 : ID 동기화 + SSO를 통한 인증 (Pass-through)								
+	      * On-premises와 연동								
+									
+	5) Azure AD Application Proxy								
+	    - 서비스 계정과 사용자 계정 분리								
+	    - Application 계정 초기화 시 자동으로 기동 될 수 있도록 서비스 계정 사용 필요(최소의 권한 부여)								
+									
+	6) Device Management								
+	   - Azure AD 장치 통합을 지원								
+	      : 사용자가 사용하는 운영체제								
+	      : MDM(모바일 장치 관리) 사용								
+									
+	7) Azure Joined Devices								
+	   - 하이브리드 Azure AD에 가입한 장치								
+	   - [실습] Implementing user-assigned managed identities for Azure resources								
+	      : AZ-300-MicrosoftAzureArchitectTechnologies/Instructions/AZ-300T01_Lab_Mod05_Implementing user-assigned managed identities for Azure resources.md								
+									
+									
+	[Application 에서 인증 구현]								
+	1) Certificate-based authentication								
+	   - 디지털 인증서를 사용하여 ID를 설정								
+	      : Front-end 와 Back-end간 상호 작용								
+	   - 암호화된 통신								
+	      : IoT 시장에 꼭 필요 : 빅데이터								
+	2) Legacy authentication methods								
+	   - Froms-based authentication								
+	   - Windows-based authentication								
+	   - Token-based authentication								
+	     : .NET 클레임 기반 인증								
+	     : 앱 서비스 인증 및 승인								
+									
+	3) Multi-Factor authentication								
+	   - 사용자를 인증 할 때 두가지 이상의 요인을 적용  								
+	     : Knowledge, Possession, Inherence								
+									
+	4) Claims								
+	   - 아이디와 그 속성을 나타내는 name/value pair : 								
+	     								
+	5) Claim-based authentication								
+									
+	6) Role-based authorization								
+									
+	7) Role-based access control(RBAC)								
+	    - 직무분리								
+									
+									
+	[Virtual Networks 구현]								
+	1) 가상 네트워크 생성								
+	   - IP 주소 공간 정의								
+	   - 서브넷 생성								
+	2) Multiple NICs in Virtual Machines								
+	   - 가상머신은 프로세스임								
+	   - 운영체제의 종속성 								
+	      : SQL Cluster 서버인 경우 3개의 IP 필요								
+	   - Docker Container : Bridge, host, virtual network								
+									
+	3) pubilc IP Address								
+	   SKUs								
+	    - Bring Your Own IP : Public IP -> AWS에서 서비스 중임								
+									
+									
+	4) User Defined Routing								
+	   - System Routing : Azure 내부적으로 모든 통신이 되도록 설정 함								
+	   - 특정한 Subnet에 특정한 Routing Table 설정								
+	     : 용도에 따른 Subnet 구분								
+	   * NVA(Network Virtualization Appliance)								
+									
+	5) Vnet-to-VNet Connections								
+	   - VPN gateway 필요								
+									
+	6) VNet Peering								
+	   - SDN(Software Defined Network)								
+									
+	7) Regional VNet Peering								
+									
+	8) Gateway Transit								
+	    - 피어링 된 VNET에서 Routing 사용 허용								
+									
+	9) Load Balancer								
+	   - L4(TCP/UDP)								
+	   - Public Load Balancer								
+	   - Internal Load Balancer : Private IP로 통신								
+	      : LOB(Line of Business) -> Backend에서 제공								
+									
+	10) Load Balancer SKUs								
+	     - SKUs : Basic, Standard								
+									
+	11) Backend Pool								
+	     - 구성은 로드 밸런서 SU에 따라 다름								
+	     - Standard : Availability Set과 VM Scale Set의 VM을 포함하여 동일한 가상 네트워크에서 최대 1000 개이 Azure VM								
+	     - Basic : 최대 100개의 VM								
+									
+	12) load Balancer Rules								
+	    - 트래픽 분산 결정								
+	       * 세션 지속성 : 5-tuple(source ip, sourceport, des ip, des port, protocol type)								
+									
+	13) Multiple Frontends								
+									
+	14) Health Probes								
+	     - HTTP '와 TCP 만 제공								
+									
+	16) Application gateway 								
+	     - L7 Load Balancer								
+	     - SSL 인증서								
+	     - 리스너 : http / https								
+	    - Health Probes								
+	       * HTTP (200~399)								
+	    - instance 기반								
+	    - Path-based routing								
+	    - host-based routing								
+	    - multiple site hosting								
+	    - redirection and session affinity								
+									
+	17) Web Application Firewall 								
+	    - 백엔드 서버 풀 작업 부하에 대한 보호 기능을 제공								
+	    - OWASP 규칙 사용								
+									
+	 								
+	18) Site-to-Site VPN connection								
+	     - IPSec IKEv1 또는 IKEv2								
+	     - 온디멘드 용량 절약 : Azure 서버를 빌려다 써서 온 프레미스 서버의 가용량 절약								
+									
+	19) VPN Gateway								
+	      - Gatewat subnet								
+									
+	20) Local Network Gateway								
+	    - 하이브리드 시나리오에서 온프레미스 VPN 장치								
+	   								
+	21) ExpressRoute(전용선)								
